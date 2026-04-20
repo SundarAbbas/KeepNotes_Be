@@ -31,6 +31,11 @@ class Task(models.Model):
     def __str__(self):
         return self.title
 
+    def get_status_name(self):
+        return self.status.name if self.status else "No Status"
+        
+    def get_priority_name(self):
+        return self.priority.name if self.priority else "No Priority"
         
     
 

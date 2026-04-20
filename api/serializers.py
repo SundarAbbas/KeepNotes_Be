@@ -6,18 +6,22 @@ from django.contrib.auth.models import User
 class StatusSerializer(serializers.ModelSerializer):
     class Meta:
         model = Status
-        fields = '__all__'
-        
+        fields = ['id','name']
         
 class PrioritySerializer(serializers.ModelSerializer):
     class Meta:
         model = Priority
-        fields = '__all__'
+        fields = ['id','name']
         
 class TaskSerializer(serializers.ModelSerializer):
+    status_name = serializers.CharField(source='status.name', read_only=True)
+    priority_name = serializers.CharField(source='priority.name', read_only=True)
+
     class Meta:
         model = Task
-        fields = '__all__'                 
+        fields = ['id', 'title', 'description', 'date', 'status', 'priority', 
+                  'status_name', 'priority_name', 'user', 'created_at']
+        read_only_fields = ['user', 'created_at']         
         
     
 class SignupSerializer(serializers.ModelSerializer):
