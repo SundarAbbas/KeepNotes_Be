@@ -16,10 +16,10 @@ class Status(models.Model):
     
 
 class Task(models.Model):
-    title = models.CharField(max_length=50)    
+    title = models.CharField(max_length=200)    
     priority = models.ForeignKey(Priority , on_delete=models.CASCADE)
     status = models.ForeignKey(Status , on_delete=models.CASCADE)
-    description = models.CharField(max_length=200)
+    description = models.CharField(max_length=1000)
     date = models.DateField()
     user = models.ForeignKey(User,on_delete=models.CASCADE ,  default=1)
     created_at = models.DateTimeField(auto_now_add=True)
